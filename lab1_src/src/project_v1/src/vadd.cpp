@@ -35,8 +35,8 @@ void compute(const int a_buf[DATA_SIZE], const int b_buf[DATA_SIZE], int c_buf[D
     }
 
     calc_add: for (int i = 0; i < DATA_SIZE; i++) {
-// Fill This Part !!!
-        
+        c_buf_normal[i] = b_buf_normal[i] + a_buf_normal[i];
+
     }
 
     copy_c_buf: for (int i = 0; i < DATA_SIZE; i++) {

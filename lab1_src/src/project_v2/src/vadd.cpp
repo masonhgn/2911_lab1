@@ -1,17 +1,16 @@
 #include <ap_int.h>
 
 #define DATA_SIZE 32768
-
-// Fill This Part !!!
-// Please #define BLOCK_SIZE !!!
+#define BLOCK_SIZE 2048
 
 typedef ap_int<512> block_t;
+
 
 extern "C" {
 
 void load(block_t a_buf[BLOCK_SIZE], const block_t *a_in,
           block_t b_buf[BLOCK_SIZE], const block_t *b_in) {
-    for (int i = 0; i < BLOCK_SIZE; i++) {
+    for (int i = 0; i < BLOCK_s; i++) {
         a_buf[i] = a_in[i];
     }
     for (int i = 0; i < BLOCK_SIZE; i++) {
@@ -39,9 +38,8 @@ void compute(const block_t a_buf[BLOCK_SIZE], const block_t b_buf[BLOCK_SIZE],
 
     copy_b_buf: for (int i = 0; i < BLOCK_SIZE; i++) {
         for (int j = 0; j < 16; j++) {
-// Fill This Part !!!
-
-
+            ap_int<32> val = b_buf[i](32 * (j + 1) - 1, 32 * j);
+            b_buf_normal[i * 16 + j] = (int) val;
         }
     }
 
